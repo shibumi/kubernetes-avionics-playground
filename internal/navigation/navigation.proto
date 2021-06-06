@@ -5,29 +5,63 @@ package navigation;
 
 service Navigation {
   rpc GetNavigation(EmptyMessage) returns (stream NavigationMessage) {};
+  rpc MonitorGroundSpeed(EmptyMessage) returns (stream GroundSpeedMessage) {};
+  rpc MonitorVerticalSpeed(EmptyMessage) returns (stream VerticalSpeedMessage) {};
+  rpc MonitorLongitude(EmptyMessage) returns (stream LongitudeMessage) {};
+  rpc MonitorLatitude(EmptyMessage) returns (stream LatitudeMesage) {};
+  rpc MonitorAltitude(EmptyMessage) returns (stream AltitudeMessage) {};
+  rpc MonitorAltitudeAGL(EmptyMessage) returns (stream AltitudeAGLMessage) {};
+  rpc MonitorPitch(EmptyMessage) returns (stream PitchMessage) {};
+  rpc MonitorRoll(EmptyMessage) returns (stream RollMessage) {};
+  rpc MonitorHeading(EmptyMessage) returns (stream HeadingMessage) {};
 }
 
 message EmptyMessage {}
 
-message NavigationMessage {
-  string groundspeed = 1;
-  string verticalspeed = 2;
-  string longitude = 3;
-  string latitude = 4;
-  string altitude = 5;
-  string altitudeagl = 6;
-  string pitch = 7;
-  string roll = 8;
-  string heading = 9;
+message GroundSpeedMessage {
+  double groundspeed = 1;
 }
 
-// PropertyListener endpoints
-//"/velocities/groundspeed-kt",
-//"/velocities/vertical-speed-fps",
-//"/position/longitude-deg",
-//"/position/latitude-deg",
-//"/position/altitude-ft",
-//"/position/altitude-agl-ft",
-//"/orientation/pitch-deg",
-//"/orientation/roll-deg",
-//"/orientation/heading-deg",
+message VerticalSpeedMessage {
+  double verticalspeed = 1;
+}
+
+message LongitudeMessage {
+  double longitutude = 1;
+}
+
+message LatitudeMesage {
+  double latitude = 1;
+}
+
+message AltitudeMessage {
+  double altitude = 1;
+}
+
+message AltitudeAGLMessage {
+  double altitudeagl = 1;
+}
+
+message PitchMessage {
+  double pitch = 1;
+}
+
+message RollMessage {
+  double roll = 1;
+}
+
+message HeadingMessage {
+  double heading = 1;
+}
+
+message NavigationMessage {
+  double groundspeed = 1;
+  double verticalspeed = 2;
+  double longitude = 3;
+  double latitude = 4;
+  double altitude = 5;
+  double altitudeagl = 6;
+  double pitch = 7;
+  double roll = 8;
+  double heading = 9;
+}

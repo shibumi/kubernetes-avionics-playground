@@ -18,6 +18,15 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type NavigationClient interface {
 	GetNavigation(ctx context.Context, in *EmptyMessage, opts ...grpc.CallOption) (Navigation_GetNavigationClient, error)
+	MonitorGroundSpeed(ctx context.Context, in *EmptyMessage, opts ...grpc.CallOption) (Navigation_MonitorGroundSpeedClient, error)
+	MonitorVerticalSpeed(ctx context.Context, in *EmptyMessage, opts ...grpc.CallOption) (Navigation_MonitorVerticalSpeedClient, error)
+	MonitorLongitude(ctx context.Context, in *EmptyMessage, opts ...grpc.CallOption) (Navigation_MonitorLongitudeClient, error)
+	MonitorLatitude(ctx context.Context, in *EmptyMessage, opts ...grpc.CallOption) (Navigation_MonitorLatitudeClient, error)
+	MonitorAltitude(ctx context.Context, in *EmptyMessage, opts ...grpc.CallOption) (Navigation_MonitorAltitudeClient, error)
+	MonitorAltitudeAGL(ctx context.Context, in *EmptyMessage, opts ...grpc.CallOption) (Navigation_MonitorAltitudeAGLClient, error)
+	MonitorPitch(ctx context.Context, in *EmptyMessage, opts ...grpc.CallOption) (Navigation_MonitorPitchClient, error)
+	MonitorRoll(ctx context.Context, in *EmptyMessage, opts ...grpc.CallOption) (Navigation_MonitorRollClient, error)
+	MonitorHeading(ctx context.Context, in *EmptyMessage, opts ...grpc.CallOption) (Navigation_MonitorHeadingClient, error)
 }
 
 type navigationClient struct {
@@ -60,11 +69,308 @@ func (x *navigationGetNavigationClient) Recv() (*NavigationMessage, error) {
 	return m, nil
 }
 
+func (c *navigationClient) MonitorGroundSpeed(ctx context.Context, in *EmptyMessage, opts ...grpc.CallOption) (Navigation_MonitorGroundSpeedClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Navigation_serviceDesc.Streams[1], "/navigation.Navigation/MonitorGroundSpeed", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &navigationMonitorGroundSpeedClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type Navigation_MonitorGroundSpeedClient interface {
+	Recv() (*GroundSpeedMessage, error)
+	grpc.ClientStream
+}
+
+type navigationMonitorGroundSpeedClient struct {
+	grpc.ClientStream
+}
+
+func (x *navigationMonitorGroundSpeedClient) Recv() (*GroundSpeedMessage, error) {
+	m := new(GroundSpeedMessage)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *navigationClient) MonitorVerticalSpeed(ctx context.Context, in *EmptyMessage, opts ...grpc.CallOption) (Navigation_MonitorVerticalSpeedClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Navigation_serviceDesc.Streams[2], "/navigation.Navigation/MonitorVerticalSpeed", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &navigationMonitorVerticalSpeedClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type Navigation_MonitorVerticalSpeedClient interface {
+	Recv() (*VerticalSpeedMessage, error)
+	grpc.ClientStream
+}
+
+type navigationMonitorVerticalSpeedClient struct {
+	grpc.ClientStream
+}
+
+func (x *navigationMonitorVerticalSpeedClient) Recv() (*VerticalSpeedMessage, error) {
+	m := new(VerticalSpeedMessage)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *navigationClient) MonitorLongitude(ctx context.Context, in *EmptyMessage, opts ...grpc.CallOption) (Navigation_MonitorLongitudeClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Navigation_serviceDesc.Streams[3], "/navigation.Navigation/MonitorLongitude", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &navigationMonitorLongitudeClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type Navigation_MonitorLongitudeClient interface {
+	Recv() (*LongitudeMessage, error)
+	grpc.ClientStream
+}
+
+type navigationMonitorLongitudeClient struct {
+	grpc.ClientStream
+}
+
+func (x *navigationMonitorLongitudeClient) Recv() (*LongitudeMessage, error) {
+	m := new(LongitudeMessage)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *navigationClient) MonitorLatitude(ctx context.Context, in *EmptyMessage, opts ...grpc.CallOption) (Navigation_MonitorLatitudeClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Navigation_serviceDesc.Streams[4], "/navigation.Navigation/MonitorLatitude", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &navigationMonitorLatitudeClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type Navigation_MonitorLatitudeClient interface {
+	Recv() (*LatitudeMesage, error)
+	grpc.ClientStream
+}
+
+type navigationMonitorLatitudeClient struct {
+	grpc.ClientStream
+}
+
+func (x *navigationMonitorLatitudeClient) Recv() (*LatitudeMesage, error) {
+	m := new(LatitudeMesage)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *navigationClient) MonitorAltitude(ctx context.Context, in *EmptyMessage, opts ...grpc.CallOption) (Navigation_MonitorAltitudeClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Navigation_serviceDesc.Streams[5], "/navigation.Navigation/MonitorAltitude", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &navigationMonitorAltitudeClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type Navigation_MonitorAltitudeClient interface {
+	Recv() (*AltitudeMessage, error)
+	grpc.ClientStream
+}
+
+type navigationMonitorAltitudeClient struct {
+	grpc.ClientStream
+}
+
+func (x *navigationMonitorAltitudeClient) Recv() (*AltitudeMessage, error) {
+	m := new(AltitudeMessage)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *navigationClient) MonitorAltitudeAGL(ctx context.Context, in *EmptyMessage, opts ...grpc.CallOption) (Navigation_MonitorAltitudeAGLClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Navigation_serviceDesc.Streams[6], "/navigation.Navigation/MonitorAltitudeAGL", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &navigationMonitorAltitudeAGLClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type Navigation_MonitorAltitudeAGLClient interface {
+	Recv() (*AltitudeAGLMessage, error)
+	grpc.ClientStream
+}
+
+type navigationMonitorAltitudeAGLClient struct {
+	grpc.ClientStream
+}
+
+func (x *navigationMonitorAltitudeAGLClient) Recv() (*AltitudeAGLMessage, error) {
+	m := new(AltitudeAGLMessage)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *navigationClient) MonitorPitch(ctx context.Context, in *EmptyMessage, opts ...grpc.CallOption) (Navigation_MonitorPitchClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Navigation_serviceDesc.Streams[7], "/navigation.Navigation/MonitorPitch", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &navigationMonitorPitchClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type Navigation_MonitorPitchClient interface {
+	Recv() (*PitchMessage, error)
+	grpc.ClientStream
+}
+
+type navigationMonitorPitchClient struct {
+	grpc.ClientStream
+}
+
+func (x *navigationMonitorPitchClient) Recv() (*PitchMessage, error) {
+	m := new(PitchMessage)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *navigationClient) MonitorRoll(ctx context.Context, in *EmptyMessage, opts ...grpc.CallOption) (Navigation_MonitorRollClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Navigation_serviceDesc.Streams[8], "/navigation.Navigation/MonitorRoll", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &navigationMonitorRollClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type Navigation_MonitorRollClient interface {
+	Recv() (*RollMessage, error)
+	grpc.ClientStream
+}
+
+type navigationMonitorRollClient struct {
+	grpc.ClientStream
+}
+
+func (x *navigationMonitorRollClient) Recv() (*RollMessage, error) {
+	m := new(RollMessage)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *navigationClient) MonitorHeading(ctx context.Context, in *EmptyMessage, opts ...grpc.CallOption) (Navigation_MonitorHeadingClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Navigation_serviceDesc.Streams[9], "/navigation.Navigation/MonitorHeading", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &navigationMonitorHeadingClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type Navigation_MonitorHeadingClient interface {
+	Recv() (*HeadingMessage, error)
+	grpc.ClientStream
+}
+
+type navigationMonitorHeadingClient struct {
+	grpc.ClientStream
+}
+
+func (x *navigationMonitorHeadingClient) Recv() (*HeadingMessage, error) {
+	m := new(HeadingMessage)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // NavigationServer is the server API for Navigation service.
 // All implementations must embed UnimplementedNavigationServer
 // for forward compatibility
 type NavigationServer interface {
 	GetNavigation(*EmptyMessage, Navigation_GetNavigationServer) error
+	MonitorGroundSpeed(*EmptyMessage, Navigation_MonitorGroundSpeedServer) error
+	MonitorVerticalSpeed(*EmptyMessage, Navigation_MonitorVerticalSpeedServer) error
+	MonitorLongitude(*EmptyMessage, Navigation_MonitorLongitudeServer) error
+	MonitorLatitude(*EmptyMessage, Navigation_MonitorLatitudeServer) error
+	MonitorAltitude(*EmptyMessage, Navigation_MonitorAltitudeServer) error
+	MonitorAltitudeAGL(*EmptyMessage, Navigation_MonitorAltitudeAGLServer) error
+	MonitorPitch(*EmptyMessage, Navigation_MonitorPitchServer) error
+	MonitorRoll(*EmptyMessage, Navigation_MonitorRollServer) error
+	MonitorHeading(*EmptyMessage, Navigation_MonitorHeadingServer) error
 	mustEmbedUnimplementedNavigationServer()
 }
 
@@ -74,6 +380,33 @@ type UnimplementedNavigationServer struct {
 
 func (UnimplementedNavigationServer) GetNavigation(*EmptyMessage, Navigation_GetNavigationServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetNavigation not implemented")
+}
+func (UnimplementedNavigationServer) MonitorGroundSpeed(*EmptyMessage, Navigation_MonitorGroundSpeedServer) error {
+	return status.Errorf(codes.Unimplemented, "method MonitorGroundSpeed not implemented")
+}
+func (UnimplementedNavigationServer) MonitorVerticalSpeed(*EmptyMessage, Navigation_MonitorVerticalSpeedServer) error {
+	return status.Errorf(codes.Unimplemented, "method MonitorVerticalSpeed not implemented")
+}
+func (UnimplementedNavigationServer) MonitorLongitude(*EmptyMessage, Navigation_MonitorLongitudeServer) error {
+	return status.Errorf(codes.Unimplemented, "method MonitorLongitude not implemented")
+}
+func (UnimplementedNavigationServer) MonitorLatitude(*EmptyMessage, Navigation_MonitorLatitudeServer) error {
+	return status.Errorf(codes.Unimplemented, "method MonitorLatitude not implemented")
+}
+func (UnimplementedNavigationServer) MonitorAltitude(*EmptyMessage, Navigation_MonitorAltitudeServer) error {
+	return status.Errorf(codes.Unimplemented, "method MonitorAltitude not implemented")
+}
+func (UnimplementedNavigationServer) MonitorAltitudeAGL(*EmptyMessage, Navigation_MonitorAltitudeAGLServer) error {
+	return status.Errorf(codes.Unimplemented, "method MonitorAltitudeAGL not implemented")
+}
+func (UnimplementedNavigationServer) MonitorPitch(*EmptyMessage, Navigation_MonitorPitchServer) error {
+	return status.Errorf(codes.Unimplemented, "method MonitorPitch not implemented")
+}
+func (UnimplementedNavigationServer) MonitorRoll(*EmptyMessage, Navigation_MonitorRollServer) error {
+	return status.Errorf(codes.Unimplemented, "method MonitorRoll not implemented")
+}
+func (UnimplementedNavigationServer) MonitorHeading(*EmptyMessage, Navigation_MonitorHeadingServer) error {
+	return status.Errorf(codes.Unimplemented, "method MonitorHeading not implemented")
 }
 func (UnimplementedNavigationServer) mustEmbedUnimplementedNavigationServer() {}
 
@@ -109,6 +442,195 @@ func (x *navigationGetNavigationServer) Send(m *NavigationMessage) error {
 	return x.ServerStream.SendMsg(m)
 }
 
+func _Navigation_MonitorGroundSpeed_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(EmptyMessage)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(NavigationServer).MonitorGroundSpeed(m, &navigationMonitorGroundSpeedServer{stream})
+}
+
+type Navigation_MonitorGroundSpeedServer interface {
+	Send(*GroundSpeedMessage) error
+	grpc.ServerStream
+}
+
+type navigationMonitorGroundSpeedServer struct {
+	grpc.ServerStream
+}
+
+func (x *navigationMonitorGroundSpeedServer) Send(m *GroundSpeedMessage) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _Navigation_MonitorVerticalSpeed_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(EmptyMessage)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(NavigationServer).MonitorVerticalSpeed(m, &navigationMonitorVerticalSpeedServer{stream})
+}
+
+type Navigation_MonitorVerticalSpeedServer interface {
+	Send(*VerticalSpeedMessage) error
+	grpc.ServerStream
+}
+
+type navigationMonitorVerticalSpeedServer struct {
+	grpc.ServerStream
+}
+
+func (x *navigationMonitorVerticalSpeedServer) Send(m *VerticalSpeedMessage) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _Navigation_MonitorLongitude_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(EmptyMessage)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(NavigationServer).MonitorLongitude(m, &navigationMonitorLongitudeServer{stream})
+}
+
+type Navigation_MonitorLongitudeServer interface {
+	Send(*LongitudeMessage) error
+	grpc.ServerStream
+}
+
+type navigationMonitorLongitudeServer struct {
+	grpc.ServerStream
+}
+
+func (x *navigationMonitorLongitudeServer) Send(m *LongitudeMessage) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _Navigation_MonitorLatitude_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(EmptyMessage)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(NavigationServer).MonitorLatitude(m, &navigationMonitorLatitudeServer{stream})
+}
+
+type Navigation_MonitorLatitudeServer interface {
+	Send(*LatitudeMesage) error
+	grpc.ServerStream
+}
+
+type navigationMonitorLatitudeServer struct {
+	grpc.ServerStream
+}
+
+func (x *navigationMonitorLatitudeServer) Send(m *LatitudeMesage) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _Navigation_MonitorAltitude_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(EmptyMessage)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(NavigationServer).MonitorAltitude(m, &navigationMonitorAltitudeServer{stream})
+}
+
+type Navigation_MonitorAltitudeServer interface {
+	Send(*AltitudeMessage) error
+	grpc.ServerStream
+}
+
+type navigationMonitorAltitudeServer struct {
+	grpc.ServerStream
+}
+
+func (x *navigationMonitorAltitudeServer) Send(m *AltitudeMessage) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _Navigation_MonitorAltitudeAGL_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(EmptyMessage)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(NavigationServer).MonitorAltitudeAGL(m, &navigationMonitorAltitudeAGLServer{stream})
+}
+
+type Navigation_MonitorAltitudeAGLServer interface {
+	Send(*AltitudeAGLMessage) error
+	grpc.ServerStream
+}
+
+type navigationMonitorAltitudeAGLServer struct {
+	grpc.ServerStream
+}
+
+func (x *navigationMonitorAltitudeAGLServer) Send(m *AltitudeAGLMessage) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _Navigation_MonitorPitch_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(EmptyMessage)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(NavigationServer).MonitorPitch(m, &navigationMonitorPitchServer{stream})
+}
+
+type Navigation_MonitorPitchServer interface {
+	Send(*PitchMessage) error
+	grpc.ServerStream
+}
+
+type navigationMonitorPitchServer struct {
+	grpc.ServerStream
+}
+
+func (x *navigationMonitorPitchServer) Send(m *PitchMessage) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _Navigation_MonitorRoll_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(EmptyMessage)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(NavigationServer).MonitorRoll(m, &navigationMonitorRollServer{stream})
+}
+
+type Navigation_MonitorRollServer interface {
+	Send(*RollMessage) error
+	grpc.ServerStream
+}
+
+type navigationMonitorRollServer struct {
+	grpc.ServerStream
+}
+
+func (x *navigationMonitorRollServer) Send(m *RollMessage) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _Navigation_MonitorHeading_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(EmptyMessage)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(NavigationServer).MonitorHeading(m, &navigationMonitorHeadingServer{stream})
+}
+
+type Navigation_MonitorHeadingServer interface {
+	Send(*HeadingMessage) error
+	grpc.ServerStream
+}
+
+type navigationMonitorHeadingServer struct {
+	grpc.ServerStream
+}
+
+func (x *navigationMonitorHeadingServer) Send(m *HeadingMessage) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 var _Navigation_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "navigation.Navigation",
 	HandlerType: (*NavigationServer)(nil),
@@ -117,6 +639,51 @@ var _Navigation_serviceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "GetNavigation",
 			Handler:       _Navigation_GetNavigation_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "MonitorGroundSpeed",
+			Handler:       _Navigation_MonitorGroundSpeed_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "MonitorVerticalSpeed",
+			Handler:       _Navigation_MonitorVerticalSpeed_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "MonitorLongitude",
+			Handler:       _Navigation_MonitorLongitude_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "MonitorLatitude",
+			Handler:       _Navigation_MonitorLatitude_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "MonitorAltitude",
+			Handler:       _Navigation_MonitorAltitude_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "MonitorAltitudeAGL",
+			Handler:       _Navigation_MonitorAltitudeAGL_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "MonitorPitch",
+			Handler:       _Navigation_MonitorPitch_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "MonitorRoll",
+			Handler:       _Navigation_MonitorRoll_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "MonitorHeading",
+			Handler:       _Navigation_MonitorHeading_Handler,
 			ServerStreams: true,
 		},
 	},
