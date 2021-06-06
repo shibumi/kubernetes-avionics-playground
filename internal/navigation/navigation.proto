@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option go_package = "github.com/shibumi/kubernetes-avionics-playground/internal/navigation";
+package navigation;
+
+service Navigation {
+  rpc GetNavigation(EmptyMessage) returns (stream NavigationMessage) {};
+}
+
+message EmptyMessage {}
+
+message NavigationMessage {
+  string groundspeed = 1;
+  string verticalspeed = 2;
+  string longitude = 3;
+  string latitude = 4;
+  string altitude = 5;
+  string altitudeagl = 6;
+  string pitch = 7;
+  string roll = 8;
+  string heading = 9;
+}
+
+// PropertyListener endpoints
+//"/velocities/groundspeed-kt",
+//"/velocities/vertical-speed-fps",
+//"/position/longitude-deg",
+//"/position/latitude-deg",
+//"/position/altitude-ft",
+//"/position/altitude-agl-ft",
+//"/orientation/pitch-deg",
+//"/orientation/roll-deg",
+//"/orientation/heading-deg",
