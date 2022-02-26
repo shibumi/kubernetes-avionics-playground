@@ -1,0 +1,1 @@
+Scenario 4 tests the network isolation capabilities through Kubernetes and the net Linux namespace.

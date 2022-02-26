@@ -1,0 +1,1 @@
+Scenario2 tests the CPU and RAM allocation capabilities of Kubernetes and Linux containers.
