@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: too-much
+  name: too-much
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: too-much
+  template:
+    metadata:
+      labels:
+        app: too-much
+    spec:
+      containers:
+      - image: debian:buster
+        name: too-much
+        command: ["/bin/sh"]
+        args: ["-c", "while true; do sleep 10;done"]
+        resources:
+          limits:
+            cpu: 4000m
+            memory: 8000M

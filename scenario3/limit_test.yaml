@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hello-world
+  name: hello-world
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - image: debian:buster
+        name: hello-world
+        command: ["/bin/sh"]
+        args: ["-c", "while true; do sleep 10;done"]
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 500M
+

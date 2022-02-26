@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: cpu-virtualizer
+  name: cpu-virtualizer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cpu-virtualizer
+  template:
+    metadata:
+      labels:
+        app: cpu-virtualizer
+    spec:
+      containers:
+      - image: quay.io/connordoyle/cpuset-visualizer
+        name: cpu-virtualizer
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 500M
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: cpu-virtualizer
+  name: cpu-virtualizer
+  namespace: default
+spec:
+  ports:
+  - nodePort: 31296
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: cpu-virtualizer
+  type: NodePort
